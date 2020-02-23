@@ -1,0 +1,32 @@
+@startuml
+
+User --|> UserProfile : OneToOne
+User --*  Weight : OneToMany
+
+class Weight {
+    Double weight_value
+    DateTime created_at
+    User insert_by
+
+    String __str__()
+    String get_absolut_url()
+}
+
+class User {
+    String first_name
+    String last_name
+    String email
+    String password
+
+    String __str__()
+}
+
+class UserProfile {
+    Image profile_image
+    Double height
+
+    String __str__()
+    String get_absolut_url()
+}
+
+@enduml
