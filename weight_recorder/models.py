@@ -12,6 +12,7 @@ class Weight(models.Model):
 
     class Meta:
         verbose_name = "Peso"
+        ordering = ("weight_date",)
 
     def __str__(self):
         return f"{self.insert_by.username} ({self.weight_value}Kg)"
