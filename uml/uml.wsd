@@ -1,4 +1,4 @@
-@startuml
+@startuml Django Weight Recorde
 
 User --|> UserProfile : OneToOne
 User --*  Weight : OneToMany
