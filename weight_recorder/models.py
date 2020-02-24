@@ -10,5 +10,8 @@ class Weight(models.Model):
     insert_by = models.ForeignKey(
         "auth.User", verbose_name="Usuário", on_delete=models.CASCADE, blank=False)
 
+    class Meta:
+        verbose_name = "Peso"
+
     def __str__(self):
         return f"{self.insert_by.username} ({self.weight_value}Kg)"
