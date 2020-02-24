@@ -44,6 +44,7 @@ THIRD_APPS = [
 ]
 
 MY_APPS = [
+    'core.apps.CoreConfig',
     'weight_recorder.apps.WeightRecorderConfig',
 ]
 
