@@ -9,7 +9,7 @@ from .models import Weight
 def dashboard(request):
     weight_list = Weight.objects.filter(insert_by=request.user)
     weight_chart_data = {
-        'labels': [weight.weight_date.strftime("%m/%d/%Y") for weight in weight_list],
+        'labels': [weight.weight_date.strftime('%m/%d/%Y') for weight in weight_list],
         'data': [weight.weight_value for weight in weight_list]
     }
 

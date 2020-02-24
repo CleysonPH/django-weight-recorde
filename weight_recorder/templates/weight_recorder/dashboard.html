@@ -28,7 +28,7 @@
                     <tbody>
                         {% for weight in weight_list %}
                             <tr>
-                                <td>{{ weight.weight_value }}</td>
+                                <td>{{ weight.weight_value }} Kg</td>
                                 <td>{{ weight.weight_date }}</td>
                             </tr>
                         {% endfor %}
@@ -48,13 +48,21 @@
 
                 // The data for our dataset
                 data: {
-                    labels: [{% for label in weight_chart_data.labels %}'{{label}}',{% endfor %}],
+                    labels: {{ weight_chart_data.labels|safe }},
                     datasets: [{
                         label: 'Peso',
                         fill: false,
                         borderColor: 'rgb(255, 99, 132)',
                         lineTension: 0,
-                        data: {{ weight_chart_data.data }}
+                        data: {{ weight_chart_data.data|safe }}
+                    }, {
+                        label: 'Meta',
+                        fill: false,
+                        borderColor: 'rgb(66,165,245)',
+                        data: [{% for data in weight_chart_data.data %}{{67}},{% endfor %}],
+                        type: 'line',
+                        // this dataset is drawn on top
+                        order: 2
                     }]
                 },
 
