@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="353px" preserveAspectRatio="none" style="width:342px;height:353px;" version="1.1" viewBox="0 0 342 353" width="342px" zoomAndPan="magnify"><defs><filter height="300%" id="fligralxre0jl" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="2.0"/><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/><feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3"/><feBlend in="SourceGraphic" in2="blurOut3" mode="normal"/></filter></defs><g><text fill="#000000" font-family="sans-serif" font-size="18" lengthAdjust="spacingAndGlyphs" textLength="258" x="45.5" y="16.708">Django Weight Recorde UML</text><!--class User--><rect fill="#FEFECE" filter="url(#fligralxre0jl)" height="112.0234" id="User" style="stroke: #A80036; stroke-width: 1.5;" width="111" x="113" y="28.9531"/><ellipse cx="150.5" cy="44.9531" fill="#ADD1B2" rx="11" ry="11" style="stroke: #A80036; stroke-width: 1.0;"/><path d="M153.4688,50.5938 Q152.8906,50.8906 152.25,51.0313 Q151.6094,51.1875 150.9063,51.1875 Q148.4063,51.1875 147.0781,49.5469 Q145.7656,47.8906 145.7656,44.7656 Q145.7656,41.6406 147.0781,39.9844 Q148.4063,38.3281 150.9063,38.3281 Q151.6094,38.3281 152.25,38.4844 Q152.9063,38.6406 153.4688,38.9375 L153.4688,41.6563 Q152.8438,41.0781 152.25,40.8125 Q151.6563,40.5313 151.0313,40.5313 Q149.6875,40.5313 149,41.6094 Q148.3125,42.6719 148.3125,44.7656 Q148.3125,46.8594 149,47.9375 Q149.6875,49 151.0313,49 Q151.6563,49 152.25,48.7344 Q152.8438,48.4531 153.4688,47.875 L153.4688,50.5938 Z "/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="29" x="169.5" y="49.1074">User</text><line style="stroke: #A80036; stroke-width: 1.5;" x1="114" x2="223" y1="60.9531" y2="60.9531"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="99" x="119" y="75.1636">String first_name</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="97" x="119" y="87.9683">String last_name</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="69" x="119" y="100.7729">String email</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="94" x="119" y="113.5776">String password</text><line style="stroke: #A80036; stroke-width: 1.5;" x1="114" x2="223" y1="120.1719" y2="120.1719"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="86" x="119" y="134.3823">String __str__()</text><!--class UserProfile--><rect fill="#FEFECE" filter="url(#fligralxre0jl)" height="99.2188" id="UserProfile" style="stroke: #A80036; stroke-width: 1.5;" width="145" x="6" y="230.9531"/><ellipse cx="41.25" cy="246.9531" fill="#ADD1B2" rx="11" ry="11" style="stroke: #A80036; stroke-width: 1.0;"/><path d="M44.2188,252.5938 Q43.6406,252.8906 43,253.0313 Q42.3594,253.1875 41.6563,253.1875 Q39.1563,253.1875 37.8281,251.5469 Q36.5156,249.8906 36.5156,246.7656 Q36.5156,243.6406 37.8281,241.9844 Q39.1563,240.3281 41.6563,240.3281 Q42.3594,240.3281 43,240.4844 Q43.6563,240.6406 44.2188,240.9375 L44.2188,243.6563 Q43.5938,243.0781 43,242.8125 Q42.4063,242.5313 41.7813,242.5313 Q40.4375,242.5313 39.75,243.6094 Q39.0625,244.6719 39.0625,246.7656 Q39.0625,248.8594 39.75,249.9375 Q40.4375,251 41.7813,251 Q42.4063,251 43,250.7344 Q43.5938,250.4531 44.2188,249.875 L44.2188,252.5938 Z "/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="68" x="59.75" y="251.1074">UserProfile</text><line style="stroke: #A80036; stroke-width: 1.5;" x1="7" x2="150" y1="262.9531" y2="262.9531"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="116" x="12" y="277.1636">Image profile_image</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="78" x="12" y="289.9683">Double height</text><line style="stroke: #A80036; stroke-width: 1.5;" x1="7" x2="150" y1="296.5625" y2="296.5625"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="86" x="12" y="310.7729">String __str__()</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="133" x="12" y="323.5776">String get_absolut_url()</text><!--class Weight--><rect fill="#FEFECE" filter="url(#fligralxre0jl)" height="124.8281" id="Weight" style="stroke: #A80036; stroke-width: 1.5;" width="145" x="186" y="217.9531"/><ellipse cx="232.75" cy="233.9531" fill="#ADD1B2" rx="11" ry="11" style="stroke: #A80036; stroke-width: 1.0;"/><path d="M235.7188,239.5938 Q235.1406,239.8906 234.5,240.0313 Q233.8594,240.1875 233.1563,240.1875 Q230.6563,240.1875 229.3281,238.5469 Q228.0156,236.8906 228.0156,233.7656 Q228.0156,230.6406 229.3281,228.9844 Q230.6563,227.3281 233.1563,227.3281 Q233.8594,227.3281 234.5,227.4844 Q235.1563,227.6406 235.7188,227.9375 L235.7188,230.6563 Q235.0938,230.0781 234.5,229.8125 Q233.9063,229.5313 233.2813,229.5313 Q231.9375,229.5313 231.25,230.6094 Q230.5625,231.6719 230.5625,233.7656 Q230.5625,235.8594 231.25,236.9375 Q231.9375,238 233.2813,238 Q233.9063,238 234.5,237.7344 Q235.0938,237.4531 235.7188,236.875 L235.7188,239.5938 Z "/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="43" x="253.25" y="238.1074">Weight</text><line style="stroke: #A80036; stroke-width: 1.5;" x1="187" x2="330" y1="249.9531" y2="249.9531"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="116" x="192" y="264.1636">Double weight_value</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="55" x="192" y="276.9683">Date date</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="118" x="192" y="289.7729">DateTime created_at</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="83" x="192" y="302.5776">User insert_by</text><line style="stroke: #A80036; stroke-width: 1.5;" x1="187" x2="330" y1="309.1719" y2="309.1719"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="86" x="192" y="323.3823">String __str__()</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="133" x="192" y="336.187">String get_absolut_url()</text><!--link User to UserProfile--><path d="M142.83,141.1431 C132.509,163.3331 120.514,189.1241 109.696,212.3811 " fill="none" id="User-&gt;UserProfile" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="none" points="115.921,215.5961,101.1393,230.7781,103.2269,209.6921,115.921,215.5961" style="stroke: #A80036; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="67" x="130.5" y="184.02">OneToOne</text><!--link User to Weight--><path d="M194.17,141.1431 C203.508,161.2201 214.217,184.2441 224.184,205.6731 " fill="none" id="User-&gt;Weight" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="229.79,217.7271,230.8863,210.5998,224.7289,206.8466,223.6326,213.9739,229.79,217.7271" style="stroke: #A80036; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="75" x="214.5" y="184.02">OneToMany</text><!--
+@startuml Django Weight Recorde
+
+title Django Weight Recorde UML
+
+User - -|> UserProfile : OneToOne
+User - -*  Weight : OneToMany
+
+class Weight {
+    Double weight_value
+    Date date
+    DateTime created_at
+    User insert_by
+
+    String __str__()
+    String get_absolut_url()
+}
+
+class User {
+    String first_name
+    String last_name
+    String email
+    String password
+
+    String __str__()
+}
+
+class UserProfile {
+    Image profile_image
+    Double height
+
+    String __str__()
+    String get_absolut_url()
+}
+
+@enduml
+
+PlantUML version 1.2019.09(Mon Aug 26 13:19:51 BRT 2019)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Java Version: 1.8.0_242-8u242-b08-0ubuntu3~16.04-b08
+Operating System: Linux
+OS Version: 4.15.0-88-generic
+Default Encoding: UTF-8
+Language: pt
+Country: BR
+--></g></svg>

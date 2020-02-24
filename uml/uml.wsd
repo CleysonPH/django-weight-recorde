@@ -1,10 +1,13 @@
 @startuml Django Weight Recorde
 
+title Django Weight Recorde UML
+
 User --|> UserProfile : OneToOne
 User --*  Weight : OneToMany
 
 class Weight {
     Double weight_value
+    Date date
     DateTime created_at
     User insert_by
 
