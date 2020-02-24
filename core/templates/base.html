@@ -12,6 +12,9 @@
     <link type="text/css" rel="stylesheet" href="{% static 'css/materialize.min.css' %}"  media="screen,projection"/>
     <link type="text/css" rel="stylesheet" href="{% static 'css/style.css' %}"  media="screen,projection"/>
 
+    {% block styles %}
+    {% endblock styles %}
+
     <title>
         {% block title %}{% endblock title %} Weight Recorder
     </title>
@@ -54,5 +57,7 @@
 
     <!--JavaScript at end of body for optimized loading-->
     <script type="text/javascript" src="{% static 'js/materialize.min.js' %}"></script>
+    {% block scripts %}
+    {% endblock scripts %}
 </body>
 </html>
