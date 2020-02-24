@@ -44,7 +44,7 @@ THIRD_APPS = [
 ]
 
 MY_APPS = [
-    'weight_recorder.WeightRecorderConfig',
+    'weight_recorder.apps.WeightRecorderConfig',
 ]
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_APPS + MY_APPS
