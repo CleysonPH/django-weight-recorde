@@ -27,6 +27,7 @@
                         <tr>
                             <th>Peso</th>
                             <th>Data</th>
+                            <th>Ações</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -34,6 +35,10 @@
                             <tr>
                                 <td>{{ weight.weight_value }} Kg</td>
                                 <td>{{ weight.weight_date }}</td>
+                                <td>
+                                    <a class="tooltipped waves-effect waves-light btn blue" data-position="top" data-tooltip="Editar"><i class="material-icons">edit</i></a>
+                                    <a class="tooltipped waves-effect waves-light btn red" data-position="top" data-tooltip="Apagar"><i class="material-icons">delete</i></a>
+                                </td>
                             </tr>
                         {% endfor %}
                     </tbody>
@@ -42,7 +47,7 @@
         </div>
 
         <div class="fixed-action-btn">
-            <a href="{% url 'weight_recorder:weight_create' %}" class="btn-floating btn-large waves-effect waves-light blue"><i class="material-icons">add</i></a>
+            <a href="{% url 'weight_recorder:weight_create' %}" class="btn-floating btn-large waves-effect waves-light green"><i class="material-icons">add</i></a>
         </div>
     </main>
 
@@ -76,6 +81,11 @@
 
                 // Configuration options go here
                 options: {}
+            });
+
+            document.addEventListener('DOMContentLoaded', function() {
+                var elems = document.querySelectorAll('.tooltipped');
+                var instances = M.Tooltip.init(elems);
             });
         </script>
     {% endblock scripts %}
