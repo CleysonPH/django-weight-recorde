@@ -1,5 +1,4 @@
 from django.shortcuts import render
-from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 
 from .models import Weight
@@ -22,3 +21,13 @@ def dashboard(request):
     }
 
     return render(request, 'weight_recorder/dashboard.html', context)
+
+
+@login_required
+def weight_create(request):
+
+    context = {
+        'title': 'Adicionar novo peso'
+    }
+
+    return render(request, 'weight_recorder/weight_form.html', context)
