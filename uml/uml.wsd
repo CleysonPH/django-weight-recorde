@@ -27,6 +27,8 @@ class User {
 class UserProfile {
     Image profile_image
     Double height
+    Double weight_goal
+    User user
 
     String __str__()
     String get_absolut_url()
