@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 
 from .models import Weight
+from .forms import WeightForm
 
 
 @login_required
@@ -25,9 +26,10 @@ def dashboard(request):
 
 @login_required
 def weight_create(request):
-
+    form = WeightForm()
     context = {
-        'title': 'Adicionar novo peso'
+        'title': 'Adicionar novo peso',
+        'form': form,
     }
 
     return render(request, 'weight_recorder/weight_form.html', context)

@@ -40,7 +40,7 @@ DJANGO_APPS = [
 ]
 
 THIRD_APPS = [
-
+    'widget_tweaks',
 ]
 
 MY_APPS = [
