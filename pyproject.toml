@@ -8,6 +8,7 @@ authors = ["Cleyson Lima <cleysonph@gmail.com>"]
 python = "^3.6"
 django = "^3.0.3"
 django-widget-tweaks = "^1.4.5"
+Pillow = "^7.0.0"
 
 [tool.poetry.dev-dependencies]
 autopep8 = "^1.5"
