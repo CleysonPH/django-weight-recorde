@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 
 from .forms import SignInForm, SignUpForm
 
@@ -43,3 +44,9 @@ def signup(request):
     }
 
     return render(request, 'accounts/signup.html', context)
+
+
+@login_required
+def signout(request):
+    logout(request)
+    return redirect('accounts:signin')
