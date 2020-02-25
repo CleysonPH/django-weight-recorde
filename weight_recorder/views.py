@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 
 from .models import Weight
@@ -9,7 +9,7 @@ from .forms import WeightForm
 def dashboard(request):
     weight_list = Weight.objects.filter(insert_by=request.user)
     weight_chart_data = {
-        'labels': [weight.weight_date.strftime('%m/%d/%Y') for weight in weight_list],
+        'labels': [weight.weight_date.strftime('%d/%m/%Y') for weight in weight_list],
         'data': [weight.weight_value for weight in weight_list]
     }
 
@@ -26,6 +26,15 @@ def dashboard(request):
 
 @login_required
 def weight_create(request):
+    if request.method == 'POST':
+        form = WeightForm(request.POST)
+
+        if form.is_valid():
+            weight = form.save(commit=False)
+            weight.insert_by = request.user
+            weight.save()
+            return redirect('weight_recorder:dashboard')
+
     form = WeightForm()
     context = {
         'title': 'Adicionar novo peso',
