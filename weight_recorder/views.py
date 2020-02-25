@@ -62,3 +62,10 @@ def weight_edit(request, pk):
     }
 
     return render(request, 'weight_recorder/weight_form.html', context)
+
+
+@login_required
+def weight_delete(request, pk):
+    weight = get_object_or_404(Weight, pk=pk, insert_by=request.user)
+    weight.delete()
+    return redirect('weight_recorder:dashboard')
