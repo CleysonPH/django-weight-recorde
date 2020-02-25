@@ -15,82 +15,104 @@
             </div>
         </div>
 
+        {% if weight_list %}
+            <div class="row">
+                <div class="col s12 l6">
+                    <canvas id="weight-chart"></canvas>
+                </div>
 
-        <div class="row">
-            <div class="col s12 l6">
-                <canvas id="weight-chart"></canvas>
-            </div>
-
-            <div class="col s12 l6">
-                <table class="striped">
-                    <thead>
-                        <tr>
-                            <th>Peso</th>
-                            <th>Data</th>
-                            <th>Ações</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for weight in weight_list %}
+                <div class="col s12 l6">
+                    <table class="striped">
+                        <thead>
                             <tr>
-                                <td>{{ weight.weight_value }} Kg</td>
-                                <td>{{ weight.weight_date }}</td>
-                                <td>
-                                    <a href="{% url 'weight_recorder:weight_edit' pk=weight.pk %}" class="tooltipped waves-effect waves-light btn blue lighten-1" data-position="top" data-tooltip="Editar">
-                                        <i class="material-icons">edit</i>
-                                    </a>
-                                    <a href="{% url 'weight_recorder:weight_delete' pk=weight.pk %}" onclick="return confirm('Certeza que deseja remover este peso?');" class="tooltipped waves-effect waves-light btn red lighten-1" data-position="top" data-tooltip="Apagar">
-                                        <i class="material-icons">delete</i>
-                                    </a>
-                                </td>
+                                <th>Peso</th>
+                                <th>Data</th>
+                                <th>Ações</th>
                             </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                            {% for weight in weight_list %}
+                                <tr>
+                                    <td>{{ weight.weight_value }} Kg</td>
+                                    <td>{{ weight.weight_date }}</td>
+                                    <td>
+                                        <a href="{% url 'weight_recorder:weight_edit' pk=weight.pk %}" class="tooltipped waves-effect waves-light btn blue lighten-1" data-position="top" data-tooltip="Editar">
+                                            <i class="material-icons">edit</i>
+                                        </a>
+                                        <a href="{% url 'weight_recorder:weight_delete' pk=weight.pk %}" onclick="return confirm('Certeza que deseja remover este peso?');" class="tooltipped waves-effect waves-light btn red lighten-1" data-position="top" data-tooltip="Apagar">
+                                            <i class="material-icons">delete</i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
             </div>
-        </div>
+        {% else %}
+            <div class="tap-target blue lighten-1" data-target="add_weight_btn">
+                <div class="tap-target-content">
+                    <h5>Nenhum peso cadastrado</h5>
+                    <p>
+                        Você ainda não registrou nenhuma pessagem no sistema, clique no botão <i class="material-icons">add</i> para registrar uma nova pesagem.
+                    </p>
+                </div>
+            </div>
+        {% endif %}
 
         <div class="fixed-action-btn">
-            <a href="{% url 'weight_recorder:weight_create' %}" class="btn-floating btn-large waves-effect waves-light green lighten-1"><i class="material-icons">add</i></a>
+            <a href="{% url 'weight_recorder:weight_create' %}" id="add_weight_btn" class="btn-floating btn-large waves-effect waves-light green lighten-1">
+                <i class="material-icons">add</i>
+            </a>
         </div>
     </main>
 
     {% block scripts %}
         <script type="text/javascript" src="{% static 'js/chart.min.js' %}"></script>
         <script>
-            var ctx = document.getElementById('weight-chart').getContext('2d');
-            var chart = new Chart(ctx, {
-                // The type of chart we want to create
-                type: 'line',
+            {% if weight_list %}
+                var ctx = document.getElementById('weight-chart').getContext('2d');
+                var chart = new Chart(ctx, {
+                    // The type of chart we want to create
+                    type: 'line',
 
-                // The data for our dataset
-                data: {
-                    labels: {{ weight_chart_data.labels|safe }},
-                    datasets: [{
-                        label: 'Peso',
-                        fill: false,
-                        borderColor: 'rgb(255, 99, 132)',
-                        lineTension: 0,
-                        data: {{ weight_chart_data.data|safe }}
-                    }, {
-                        label: 'Meta',
-                        fill: false,
-                        borderColor: 'rgb(66,165,245)',
-                        data: [{% for data in weight_chart_data.data %}{{67}},{% endfor %}],
-                        type: 'line',
-                        // this dataset is drawn on top
-                        order: 2
-                    }]
-                },
+                    // The data for our dataset
+                    data: {
+                        labels: {{ weight_chart_data.labels|safe }},
+                        datasets: [{
+                            label: 'Peso',
+                            fill: false,
+                            borderColor: 'rgb(255, 99, 132)',
+                            lineTension: 0,
+                            data: {{ weight_chart_data.data|safe }}
+                        }, {
+                            label: 'Meta',
+                            fill: false,
+                            borderColor: 'rgb(66,165,245)',
+                            data: [{% for data in weight_chart_data.data %}{{67}},{% endfor %}],
+                            type: 'line',
+                            // this dataset is drawn on top
+                            order: 2
+                        }]
+                    },
 
-                // Configuration options go here
-                options: {}
-            });
+                    // Configuration options go here
+                    options: {}
+                });
+            {% endif %}
 
             document.addEventListener('DOMContentLoaded', function() {
                 var elems = document.querySelectorAll('.tooltipped');
                 var instances = M.Tooltip.init(elems);
             });
+
+            {%if not weight_list %}
+                document.addEventListener('DOMContentLoaded', function() {
+                    var elems = document.querySelectorAll('.tap-target');
+                    var instances = M.TapTarget.init(elems);
+                    instances[0].open();
+                });
+            {% endif %}
         </script>
     {% endblock scripts %}
 
