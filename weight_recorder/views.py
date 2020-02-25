@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 
 from .models import Weight
@@ -38,6 +38,26 @@ def weight_create(request):
     form = WeightForm()
     context = {
         'title': 'Adicionar novo peso',
+        'form': form,
+    }
+
+    return render(request, 'weight_recorder/weight_form.html', context)
+
+
+@login_required
+def weight_edit(request, pk):
+    weight = get_object_or_404(Weight, pk=pk, insert_by=request.user)
+
+    if request.method == 'POST':
+        form = WeightForm(request.POST, instance=weight)
+
+        if form.is_valid():
+            form.save()
+            return redirect('weight_recorder:dashboard')
+
+    form = WeightForm(instance=weight)
+    context = {
+        'title': 'Editar peso',
         'form': form,
     }
 

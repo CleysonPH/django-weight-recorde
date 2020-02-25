@@ -36,8 +36,12 @@
                                 <td>{{ weight.weight_value }} Kg</td>
                                 <td>{{ weight.weight_date }}</td>
                                 <td>
-                                    <a class="tooltipped waves-effect waves-light btn blue" data-position="top" data-tooltip="Editar"><i class="material-icons">edit</i></a>
-                                    <a class="tooltipped waves-effect waves-light btn red" data-position="top" data-tooltip="Apagar"><i class="material-icons">delete</i></a>
+                                    <a href="{% url 'weight_recorder:weight_edit' pk=weight.pk %}" class="tooltipped waves-effect waves-light btn blue lighten-1" data-position="top" data-tooltip="Editar">
+                                        <i class="material-icons">edit</i>
+                                    </a>
+                                    <a class="tooltipped waves-effect waves-light btn red lighten-1" data-position="top" data-tooltip="Apagar">
+                                        <i class="material-icons">delete</i>
+                                    </a>
                                 </td>
                             </tr>
                         {% endfor %}
@@ -47,7 +51,7 @@
         </div>
 
         <div class="fixed-action-btn">
-            <a href="{% url 'weight_recorder:weight_create' %}" class="btn-floating btn-large waves-effect waves-light green"><i class="material-icons">add</i></a>
+            <a href="{% url 'weight_recorder:weight_create' %}" class="btn-floating btn-large waves-effect waves-light green lighten-1"><i class="material-icons">add</i></a>
         </div>
     </main>
 
