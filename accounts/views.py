@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 
-from .forms import SignInForm, SignUpForm, UserProfileForm
+from .forms import SignInForm, SignUpForm, UserProfileForm, UserUpdateForm
 from .models import UserProfile
 
 
@@ -59,17 +59,21 @@ def user_profile_update(request):
     user_profile = request.user.userprofile
 
     if request.method == 'POST':
-        form = UserProfileForm(
+        user_form = UserUpdateForm(request.POST, instance=request.user)
+        user_profile_form = UserProfileForm(
             request.POST, request.FILES, instance=user_profile)
 
-        if form.is_valid():
-            form.save()
+        if user_form.is_valid() and user_profile_form.is_valid():
+            user_form.save()
+            user_profile_form.save()
             return redirect('weight_recorder:dashboard')
 
-    form = UserProfileForm(instance=user_profile)
+    user_form = UserUpdateForm(instance=request.user)
+    user_profile_form = UserProfileForm(instance=user_profile)
     context = {
-        'title': 'Editar Perfil',
-        'form': form,
+        'title': 'Atualizar Perfil',
+        'user_profile_form': user_profile_form,
+        'user_form': user_form,
     }
 
     return render(request, 'accounts/user_profile_form.html', context)

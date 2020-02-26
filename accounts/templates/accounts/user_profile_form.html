@@ -1,5 +1,7 @@
 {% extends 'base.html' %}
 
+{% load widget_tweaks %}
+
 {% block content %}
     <main class="container">
         <div class="row">
@@ -10,29 +12,46 @@
         </div>
 
         <div class="row">
-            <form method="POST" enctype="multipart/form-data" class="col s12">
+            <div class="col s12 l6">
+                <img src="{{ user.userprofile.profile_image.url }}" alt="" class="responsive-img">
+            </div>
+            <form method="POST" enctype="multipart/form-data" class="col s12 l6">
                 {% csrf_token %}
                 <div class="row">
-                    <div class="file-field input-field col s12">
-                        <div class="btn">
-                            <span>Foto de perfil</span>
-                            {{ form.profile_image }}
-                        </div>
-                        <div class="file-path-wrapper">
-                            <input class="file-path validate" type="text">
-                        </div>
+                    <div class="input-field col s12 l6">
+                        <i class="material-icons prefix">edit</i>
+                        {{ user_form.first_name|add_class:"validate" }}
+                        <label for="{{ user_form.first_name.id_for_label }}">Nome</label>
+                    </div>
+                    <div class="input-field col s12 l6">
+                        <i class="material-icons prefix">edit</i>
+                        {{ user_form.last_name|add_class:"validate" }}
+                        <label for="{{ user_form.last_name.id_for_label }}">Sobrenome</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <i class="material-icons prefix">mail_outline</i>
+                        {{ user_form.email|add_class:"validate" }}
+                        <label for="{{ user_form.email.id_for_label }}">E-mail</label>
                     </div>
                 </div>
                 <div class="row">
                     <div class="input-field col s12 l6">
                         <i class="material-icons prefix">straighten</i>
-                        {{ form.height }}
-                        <label for="{{ form.height.id_for_label }}">Altura</label>
+                        {{ user_profile_form.height|add_class:"validate" }}
+                        <label for="{{ user_profile_form.height.id_for_label }}">Altura</label>
                     </div>
                     <div class="input-field col s12 l6">
                         <i class="material-icons prefix">mode_edit</i>
-                        {{ form.weight_goal }}
-                        <label for="{{ form.weight_goal.id_for_label }}">Objectivo de peso</label>
+                        {{ user_profile_form.weight_goal|add_class:"validate" }}
+                        <label for="{{ user_profile_form.weight_goal.id_for_label }}">Objectivo de peso</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col s12">
+                        {{ user_profile_form.profile_image.label }}
+                        {{ user_profile_form.profile_image }}
                     </div>
                 </div>
                 <div class="row">
