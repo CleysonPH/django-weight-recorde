@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load l10n %}
 
 {% block title %}
 {{ title }} - 
@@ -89,7 +90,7 @@
                             label: 'Meta',
                             fill: false,
                             borderColor: 'rgb(66,165,245)',
-                            data: [{% for data in weight_chart_data.data %}{{67}},{% endfor %}],
+                            data: [{% for data in weight_chart_data.data %}{{ user.userprofile.weight_goal|unlocalize }},{% endfor %}],
                             type: 'line',
                             // this dataset is drawn on top
                             order: 2

@@ -12,6 +12,12 @@
     <link type="text/css" rel="stylesheet" href="{% static 'css/materialize.min.css' %}"  media="screen,projection"/>
     <link type="text/css" rel="stylesheet" href="{% static 'css/style.css' %}"  media="screen,projection"/>
 
+    <style>
+        .logo-img {
+            max-height: 100px!important;
+            padding: 5px 0!important;
+        }
+    </style>
     {% block styles %}
     {% endblock styles %}
 
@@ -24,10 +30,24 @@
         <div class="nav-wrapper">
             <a href="{% url 'weight_recorder:dashboard' %}" class="brand-logo">Weight Recorder</a>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
-                <li><a href="{% url 'accounts:signout' %}">Sign Out</a></li>
+                <li>
+                    <a class="dropdown-trigger" href="#!" data-target="user-dropdown">
+                        {{ user.get_full_name|default:user.username }}<i class="material-icons right">arrow_drop_down</i>
+                    </a>
+                </li>
             </ul>
         </div>
     </nav>
+
+    <!-- User Dropdown Structure -->
+    <ul id="user-dropdown" class="dropdown-content">
+        <li>
+            <div style="width:100%" class="center"><img src="{{ user.userprofile.profile_image.url }}" alt="" class="circle responsive-img logo-img"></div>
+        </li>
+        <li><a href="{% url 'accounts:user_profile_update' %}">Atualizar Perfil</a></li>
+        <li class="divider"></li>
+        <li><a href="{% url 'accounts:signout' %}">Sign Out</a></li>
+    </ul>
 
     {% block content %}
     {% endblock content %}
@@ -60,6 +80,12 @@
 
     <!--JavaScript at end of body for optimized loading-->
     <script type="text/javascript" src="{% static 'js/materialize.min.js' %}"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var elems = document.querySelectorAll('.dropdown-trigger');
+            var instances = M.Dropdown.init(elems);
+        });
+    </script>
     {% block scripts %}
     {% endblock scripts %}
 </body>
