@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout, update_session_auth_hash
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import PasswordChangeForm
+from django.contrib import messages
 
 from .forms import SignInForm, SignUpForm, UserProfileForm, UserUpdateForm
 from .models import UserProfile
@@ -67,6 +68,8 @@ def user_profile_update(request):
         if user_form.is_valid() and user_profile_form.is_valid():
             user_form.save()
             user_profile_form.save()
+            messages.success(request, 'Perfil atualizado com sucesso')
+
             return redirect('weight_recorder:dashboard')
 
     user_form = UserUpdateForm(instance=request.user)
@@ -87,7 +90,9 @@ def update_password(request):
 
         if form.is_valid():
             form.save()
+            messages.success(request, 'Senha alterada com sucesso')
             update_session_auth_hash(request, form.user)
+
             return redirect('weight_recorder:dashboard')
 
     form = PasswordChangeForm(user=request.user)

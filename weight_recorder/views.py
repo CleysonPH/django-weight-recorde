@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 
 from .models import Weight
 from .forms import WeightForm
@@ -12,8 +13,6 @@ def dashboard(request):
         'labels': [weight.weight_date.strftime('%d/%m/%Y') for weight in weight_list],
         'data': [weight.weight_value for weight in weight_list]
     }
-
-    print(weight_chart_data)
 
     context = {
         'title': 'Dashboard',
@@ -33,6 +32,8 @@ def weight_create(request):
             weight = form.save(commit=False)
             weight.insert_by = request.user
             weight.save()
+            messages.success(request, 'Peso cadastrado com sucesso')
+
             return redirect('weight_recorder:dashboard')
 
     form = WeightForm()
@@ -53,6 +54,8 @@ def weight_edit(request, pk):
 
         if form.is_valid():
             form.save()
+            messages.success(request, 'Peso modificado com sucesso')
+
             return redirect('weight_recorder:dashboard')
 
     form = WeightForm(instance=weight)
@@ -68,4 +71,6 @@ def weight_edit(request, pk):
 def weight_delete(request, pk):
     weight = get_object_or_404(Weight, pk=pk, insert_by=request.user)
     weight.delete()
+    messages.success(request, 'Peso deletado com sucesso')
+
     return redirect('weight_recorder:dashboard')
