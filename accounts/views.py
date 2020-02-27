@@ -95,4 +95,5 @@ def update_password(request):
         'title': 'Alterar Senha',
         'form': form,
     }
+
     return render(request, 'accounts/update_password.html', context)

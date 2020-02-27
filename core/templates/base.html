@@ -29,6 +29,7 @@
     <nav>
         <div class="nav-wrapper">
             <a href="{% url 'weight_recorder:dashboard' %}" class="brand-logo">Weight Recorder</a>
+            <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
                 <li>
                     <a class="dropdown-trigger" href="#!" data-target="user-dropdown">
@@ -38,6 +39,24 @@
             </ul>
         </div>
     </nav>
+
+    <ul id="slide-out" class="sidenav">
+        <li>
+            <div class="user-view">
+                <div class="background">
+                    <img src="https://materializecss.com/images/office.jpg">
+                </div>
+                <img class="circle" src="{{ user.userprofile.profile_image.url }}">
+                <span class="white-text name">{{ user.get_full_name }}</span>
+                <span class="white-text email">{{ user.email }}</span>
+            </div>
+        </li>
+        <li><a href="{% url 'weight_recorder:dashboard' %}">Dashboard</a></li>
+        <li><a href="{% url 'accounts:user_profile_update' %}">Atualizar Perfil</a></li>
+        <li class="divider"></li>
+        <li><a href="{% url 'accounts:update_password' %}">Alterar Senha</a></li>
+        <li><a href="{% url 'accounts:signout' %}">Sign Out</a></li>
+    </ul>
 
     <!-- User Dropdown Structure -->
     <ul id="user-dropdown" class="dropdown-content">
@@ -90,6 +109,11 @@
         document.addEventListener('DOMContentLoaded', function() {
             var elems = document.querySelectorAll('.dropdown-trigger');
             var instances = M.Dropdown.init(elems);
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            var elems = document.querySelectorAll('.sidenav');
+            var instances = M.Sidenav.init(elems);
         });
     </script>
     {% block scripts %}
