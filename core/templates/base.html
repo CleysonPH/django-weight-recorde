@@ -43,6 +43,11 @@
     <ul id="user-dropdown" class="dropdown-content">
         <li>
             <div style="width:100%" class="center"><img src="{{ user.userprofile.profile_image.url }}" alt="" class="circle responsive-img logo-img"></div>
+            <div style="width:100%" class="center">
+                <div class="chip">
+                    IMC: {{ user.userprofile.get_imc|floatformat:2 }}
+                </div>
+            </div>
         </li>
         <li><a href="{% url 'accounts:user_profile_update' %}">Atualizar Perfil</a></li>
         <li class="divider"></li>

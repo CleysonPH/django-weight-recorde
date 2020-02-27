@@ -13,7 +13,7 @@
 
         <div class="row">
             <div class="col s12 l6">
-                <img src="{{ user.userprofile.profile_image.url }}" alt="" class="responsive-img">
+                <img src="{{ user.userprofile.profile_image.url }}" id="profile_image" class="responsive-img">
             </div>
             <form method="POST" enctype="multipart/form-data" class="col s12 l6">
                 {% csrf_token %}
@@ -52,7 +52,7 @@
                     <div class="file-field input-field col s12">
                         <div class="btn">
                             <span>{{ user_profile_form.profile_image.label }}</span>
-                            <input type="file" accept="image/*" id="{{ user_profile_form.profile_image.id_for_label }}" name="{{ user_profile_form.profile_image.html_name }}">
+                            <input onchange="document.getElementById('profile_image').src = window.URL.createObjectURL(this.files[0])" type="file" accept="image/*" id="{{ user_profile_form.profile_image.id_for_label }}" name="{{ user_profile_form.profile_image.html_name }}">
                         </div>
                         <div class="file-path-wrapper">
                             <input class="file-path validate" type="text">
