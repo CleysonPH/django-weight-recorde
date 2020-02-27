@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth import authenticate, login, logout, update_session_auth_hash
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.forms import PasswordChangeForm
 
 from .forms import SignInForm, SignUpForm, UserProfileForm, UserUpdateForm
 from .models import UserProfile
@@ -77,3 +78,21 @@ def user_profile_update(request):
     }
 
     return render(request, 'accounts/user_profile_form.html', context)
+
+
+@login_required
+def update_password(request):
+    if request.method == 'POST':
+        form = PasswordChangeForm(user=request.user, data=request.POST)
+
+        if form.is_valid():
+            form.save()
+            update_session_auth_hash(request, form.user)
+            return redirect('weight_recorder:dashboard')
+
+    form = PasswordChangeForm(user=request.user)
+    context = {
+        'title': 'Alterar Senha',
+        'form': form,
+    }
+    return render(request, 'accounts/update_password.html', context)
