@@ -4,7 +4,7 @@ Aplicação desenvolvida para finalidades de estudo sobre a framework Django e s
 
 A aplicação em questão serve para registar pesagens de uma pessoa e exigir um gráfico com o histórico dos cadastros realizados.
 
-![UML](uml/uml/Django Weight Recorde.png?raw=true)
+![UML](https://github.com/CleysonPH/django-weight-recorde/blob/master/uml/uml/Django%20Weight%20Recorde.png?raw=true)
 
 ## Bibliotecas utilizadas
 
