@@ -1,31 +1,19 @@
+{% extends 'scaffold.html' %}
+
 {% load static %}
 
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <!--Import Google Icon Font-->
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <!--Import materialize.css-->
-    <link type="text/css" rel="stylesheet" href="{% static 'css/materialize.min.css' %}"  media="screen,projection"/>
-    <link type="text/css" rel="stylesheet" href="{% static 'css/style.css' %}"  media="screen,projection"/>
-
+{% block scaffold_styles %}
     <style>
         .logo-img {
             max-height: 100px!important;
             padding: 5px 0!important;
         }
     </style>
-    {% block styles %}
-    {% endblock styles %}
+    <link type="text/css" rel="stylesheet" href="{% static 'css/style.css' %}"  media="screen,projection"/>
+    {% block styles %}{% endblock styles %}
+{% endblock scaffold_styles %}
 
-    <title>
-        {% block title %}{% endblock title %} Weight Recorder
-    </title>
-</head>
-<body>
+{% block body %}
     <nav>
         <div class="nav-wrapper">
             <a href="{% url 'weight_recorder:dashboard' %}" class="brand-logo">Weight Recorder</a>
@@ -61,7 +49,7 @@
     <!-- User Dropdown Structure -->
     <ul id="user-dropdown" class="dropdown-content">
         <li>
-            <div style="width:100%" class="center"><img src="{{ user.userprofile.profile_image.url }}" alt="" class="circle responsive-img logo-img"></div>
+            <div style="width:100%" class="center"><img src="{{ user.userprofile.profile_image.url }}" alt="" class="logo-img circle responsive-img"></div>
             <div style="width:100%" class="center">
                 <div class="chip">
                     IMC: {{ user.userprofile.get_imc|floatformat:2 }}
@@ -102,9 +90,9 @@
             </div>
         </div>
     </footer>
+{% endblock body %}
 
-    <!--JavaScript at end of body for optimized loading-->
-    <script type="text/javascript" src="{% static 'js/materialize.min.js' %}"></script>
+{% block scaffold_scripts %}
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             var elems = document.querySelectorAll('.dropdown-trigger');
@@ -117,7 +105,6 @@
         });
     </script>
     {% include 'partials/_messages.html' %}
-    {% block scripts %}
-    {% endblock scripts %}
-</body>
-</html>
+
+    {% block scripts %}{% endblock scripts %}
+{% endblock scaffold_scripts %}

@@ -1,29 +1,18 @@
+{% extends 'scaffold.html' %}
+
 {% load static %}
 
 {% load widget_tweaks %}
 
-<!DOCTYPE html>
-<html lang="pt-br">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <!--Import Google Icon Font-->
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <!--Import materialize.css-->
-    <link type="text/css" rel="stylesheet" href="{% static 'css/materialize.min.css' %}" media="screen,projection" />
+{% block scaffold_styles %}
     <link type="text/css" rel="stylesheet" href="{% static 'accounts/css/style.css' %}" media="screen,projection" />
+{% endblock scaffold_styles %}
 
-    {% block styles %}
-    {% endblock styles %}
+{% block title %}
+    {{ title }}
+{% endblock title %}
 
-    <title>
-        {{title}} - Weight Recorder
-    </title>
-</head>
-
-<body>
+{% block body %}
     <main class="container">
         <div id="login-page" class="row">
             <div class="col s12 z-depth-6 card-panel">
@@ -59,9 +48,4 @@
                 </form>
             </div>
         </main>
-
-        <!--JavaScript at end of body for optimized loading-->
-        <script type="text/javascript" src="{% static 'js/materialize.min.js' %}"></script>
-</body>
-
-</html>
+{% endblock body %}

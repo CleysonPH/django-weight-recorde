@@ -1,0 +1,30 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Import materialize.css-->
+    <link type="text/css" rel="stylesheet" href="{% static 'css/materialize.min.css' %}" media="screen,projection" />
+
+    {% block  scaffold_styles %}{% endblock scaffold_styles %}
+
+    <title>
+        {% block title %}{% endblock title %} - Weight Recorder
+    </title>
+</head>
+
+<body>
+    {% block body %}{% endblock body %}
+
+    <!--JavaScript at end of body for optimized loading-->
+    <script type="text/javascript" src="{% static 'js/materialize.min.js' %}"></script>
+    {% block scaffold_scripts %}{% endblock scaffold_scripts %}
+</body>
+
+</html>

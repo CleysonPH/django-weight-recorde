@@ -3,7 +3,7 @@
 {% load l10n %}
 
 {% block title %}
-{{ title }} - 
+    {{ title }}
 {% endblock title %}
 
 {% block content %}
@@ -67,54 +67,53 @@
             </a>
         </div>
     </main>
-
-    {% block scripts %}
-        <script type="text/javascript" src="{% static 'js/chart.min.js' %}"></script>
-        <script>
-            {% if weight_list %}
-                var ctx = document.getElementById('weight-chart').getContext('2d');
-                var chart = new Chart(ctx, {
-                    // The type of chart we want to create
-                    type: 'line',
-
-                    // The data for our dataset
-                    data: {
-                        labels: {{ weight_chart_data.labels|safe }},
-                        datasets: [{
-                            label: 'Peso',
-                            fill: false,
-                            borderColor: 'rgb(255, 99, 132)',
-                            lineTension: 0,
-                            data: {{ weight_chart_data.data|safe }}
-                        }, {
-                            label: 'Meta',
-                            fill: false,
-                            borderColor: 'rgb(66,165,245)',
-                            data: [{% for data in weight_chart_data.data %}{{ user.userprofile.weight_goal|unlocalize }},{% endfor %}],
-                            type: 'line',
-                            // this dataset is drawn on top
-                            order: 2
-                        }]
-                    },
-
-                    // Configuration options go here
-                    options: {}
-                });
-            {% endif %}
-
-            document.addEventListener('DOMContentLoaded', function() {
-                var elems = document.querySelectorAll('.tooltipped');
-                var instances = M.Tooltip.init(elems);
-            });
-
-            {%if not weight_list %}
-                document.addEventListener('DOMContentLoaded', function() {
-                    var elems = document.querySelectorAll('.tap-target');
-                    var instances = M.TapTarget.init(elems);
-                    instances[0].open();
-                });
-            {% endif %}
-        </script>
-    {% endblock scripts %}
-
 {% endblock content %}
+
+{% block scripts %}
+    <script type="text/javascript" src="{% static 'js/chart.min.js' %}"></script>
+    <script>
+        {% if weight_list %}
+            var ctx = document.getElementById('weight-chart').getContext('2d');
+            var chart = new Chart(ctx, {
+                // The type of chart we want to create
+                type: 'line',
+
+                // The data for our dataset
+                data: {
+                    labels: {{ weight_chart_data.labels|safe }},
+                    datasets: [{
+                        label: 'Peso',
+                        fill: false,
+                        borderColor: 'rgb(255, 99, 132)',
+                        lineTension: 0,
+                        data: {{ weight_chart_data.data|safe }}
+                    }, {
+                        label: 'Meta',
+                        fill: false,
+                        borderColor: 'rgb(66,165,245)',
+                        data: [{% for data in weight_chart_data.data %}{{ user.userprofile.weight_goal|unlocalize }},{% endfor %}],
+                        type: 'line',
+                        // this dataset is drawn on top
+                        order: 2
+                    }]
+                },
+
+                // Configuration options go here
+                options: {}
+            });
+        {% endif %}
+
+        document.addEventListener('DOMContentLoaded', function() {
+            var elems = document.querySelectorAll('.tooltipped');
+            var instances = M.Tooltip.init(elems);
+        });
+
+        {%if not weight_list %}
+            document.addEventListener('DOMContentLoaded', function() {
+                var elems = document.querySelectorAll('.tap-target');
+                var instances = M.TapTarget.init(elems);
+                instances[0].open();
+            });
+        {% endif %}
+    </script>
+{% endblock scripts %}
