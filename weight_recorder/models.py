@@ -6,7 +6,7 @@ class Weight(models.Model):
     weight_date = models.DateField(
         "Data do registro", blank=False)
     created_at = models.DateTimeField(
-        verbose_name="Data de Criação", auto_now=False, auto_now_add=True)
+        verbose_name="Data de criação", auto_now=False, auto_now_add=True)
     insert_by = models.ForeignKey(
         "auth.User", verbose_name="Usuário", on_delete=models.CASCADE, blank=False)
 
