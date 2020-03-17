@@ -172,6 +172,12 @@ class WeightEditViewTest(TestCase):
             'password': 'TestPassword',
         }
 
+        self.test_new_book_data = {
+            'weight_value': 64,
+            'weight_date': datetime.date.today() - datetime.timedelta(days=1),
+            'insert_by': User.objects.get(username=self.test_user['username'])
+        }
+
     def test_redirect_if_not_logged_in(self):
         response = self.client.get('/peso/1/editar')
         self.assertEqual(response.status_code, 302)
@@ -212,6 +218,16 @@ class WeightEditViewTest(TestCase):
         response = self.client.get(
             reverse('weight_recorder:weight_edit', kwargs={'pk': 15}))
         self.assertEqual(response.status_code, 404)
+
+    def test_reiderect_to_dashboard_on_success(self):
+        login = self.client.login(
+            username=self.test_user['username'],
+            password=self.test_user['password'],
+        )
+        response = self.client.post(reverse('weight_recorder:weight_edit', kwargs={
+                                    'pk': 1}), self.test_new_book_data)
+        self.assertEqual(response.status_code, 302)
+        self.assertEqual(response.url, reverse('weight_recorder:dashboard'))
 
 
 class WeightRemoveViewTest(TestCase):
