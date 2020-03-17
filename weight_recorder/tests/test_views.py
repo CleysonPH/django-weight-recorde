@@ -95,19 +95,16 @@ class WeightCreateViewTest(TestCase):
         another_test_user = User.objects.create_user(
             username="AnotherTestUser", password="AnotherTestPassword")
 
-        number_of_weights = 10
-        for _ in range(number_of_weights):
-            Weight.objects.create(
-                weight_value=65.1, weight_date=datetime.date.today(), insert_by=test_user)
-
-        for _ in range(number_of_weights):
-            Weight.objects.create(
-                weight_value=65.1, weight_date=datetime.date.today(), insert_by=another_test_user)
-
     def setUp(self):
         self.test_user = {
             'username': 'TestUser',
             'password': 'TestPassword',
+        }
+
+        self.test_correct_book_data = {
+            'weight_value': 65.1,
+            'weight_date': datetime.date.today(),
+            'insert_by': User.objects.get(username=self.test_user['username'])
         }
 
     def test_redirect_if_not_logged_in(self):
@@ -139,6 +136,16 @@ class WeightCreateViewTest(TestCase):
         response = self.client.get(reverse('weight_recorder:weight_create'))
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'weight_recorder/weight_form.html')
+
+    def test_reiderect_to_dashboard_on_success(self):
+        login = self.client.login(
+            username=self.test_user['username'],
+            password=self.test_user['password'],
+        )
+        response = self.client.post(
+            reverse('weight_recorder:weight_create'), self.test_correct_book_data)
+        self.assertEqual(response.status_code, 302)
+        self.assertEqual(response.url, reverse('weight_recorder:dashboard'))
 
 
 class WeightEditViewTest(TestCase):
