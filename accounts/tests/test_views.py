@@ -51,3 +51,51 @@ class SignInViewTest(TestCase):
             reverse('accounts:signin'), self.correct_user_data, follow=True)
         self.assertEqual(
             response.context['user'].username, self.test_user.username)
+
+
+class SignUpViewTest(TestCase):
+    def setUp(self):
+        self.correct_user_data = {
+            'username': 'TestUser',
+            'password': 'TestPassword',
+            'email': 'test@test.com',
+            'first_name': 'Test',
+            'last_name': 'User'
+        }
+
+    def test_view_url_exists_at_desired_location(self):
+        response = self.client.get('/conta/signup')
+        self.assertEqual(response.status_code, 200)
+
+    def test_view_url_accessible_by_name(self):
+        response = self.client.get(reverse('accounts:signup'))
+        self.assertEqual(response.status_code, 200)
+
+    def test_view_uses_correct_template(self):
+        response = self.client.get(reverse('accounts:signup'))
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'accounts/signup.html')
+
+    def test_redirect_for_login_on_correct_user_data(self):
+        response = self.client.post(
+            reverse('accounts:signup'), self.correct_user_data)
+        self.assertEqual(response.status_code, 302)
+        self.assertEqual(response.url, reverse('accounts:signin'))
+
+    def test_user_is_create_on_corret_user_data(self):
+        response = self.client.post(
+            reverse('accounts:signup'), self.correct_user_data)
+        created_user = User.objects.get(username='TestUser')
+        self.assertEqual(created_user.username,
+                         self.correct_user_data['username'])
+        self.assertEqual(created_user.email, self.correct_user_data['email'])
+        self.assertEqual(created_user.first_name,
+                         self.correct_user_data['first_name'])
+        self.assertEqual(created_user.last_name,
+                         self.correct_user_data['last_name'])
+
+    def test_create_user_profile_when_signup(self):
+        response = self.client.post(
+            reverse('accounts:signup'), self.correct_user_data)
+        created_user = User.objects.get(username='TestUser')
+        self.assertTrue(created_user.userprofile != None)
