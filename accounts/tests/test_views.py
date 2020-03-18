@@ -99,3 +99,49 @@ class SignUpViewTest(TestCase):
             reverse('accounts:signup'), self.correct_user_data)
         created_user = User.objects.get(username='TestUser')
         self.assertTrue(created_user.userprofile != None)
+
+
+class SignOutViewTest(TestCase):
+    @classmethod
+    def setUpTestData(cls):
+        test_user = User.objects.create_user(
+            username='TestUser', password='TestPassword')
+
+    def setUp(self):
+        self.test_user = {
+            'username': 'TestUser',
+            'password': 'TestPassword',
+        }
+
+    def test_redirect_if_not_logged_in(self):
+        response = self.client.get('/conta/signout')
+        self.assertEqual(response.status_code, 302)
+        self.assertEqual(
+            response.url, f"{reverse('accounts:signin')}?next=/conta/signout")
+
+    def test_view_url_exists_at_desired_location(self):
+        login = self.client.login(
+            username=self.test_user['username'],
+            password=self.test_user['password'],
+        )
+        response = self.client.get('/conta/signout')
+        self.assertEqual(response.status_code, 302)
+        self.assertEqual(response.url, reverse('accounts:signin'))
+
+    def test_view_url_accessible_by_name(self):
+        login = self.client.login(
+            username=self.test_user['username'],
+            password=self.test_user['password'],
+        )
+        response = self.client.get(reverse('accounts:signout'))
+        self.assertEqual(response.status_code, 302)
+        self.assertEqual(response.url, reverse('accounts:signin'))
+
+    def test_logout_user(self):
+        login = self.client.login(
+            username=self.test_user['username'],
+            password=self.test_user['password'],
+        )
+        response = self.client.post(reverse('accounts:signout'), follow=True)
+        self.assertFalse(response.context['user'].is_active)
+        self.assertFalse(response.context['user'].is_authenticated)
