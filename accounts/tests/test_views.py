@@ -196,7 +196,7 @@ class UserProfileUpdateViewTest(TestCase):
             response, 'accounts/user_profile_form.html')
 
 
-class UserProfileUpdateViewTest(TestCase):
+class UpdatePasswordViewTest(TestCase):
     @classmethod
     def setUpTestData(cls):
         test_user = User.objects.create_user(
